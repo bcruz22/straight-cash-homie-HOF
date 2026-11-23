@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Straight Cash Homie Hall of Fame</title>
+<meta name="description" content="League history, records, rivalries and keepers for the Straight Cash Homie keeper league.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300274C'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' font-family='Arial Black,sans-serif' fill='%23FFCB05'%3E$%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400&display=swap">
+<style>
+/* Design tokens that the Claude dashboard normally supplies, recreated for the standalone site. */
+:root {
+  --color-fg: #1B1F27; --color-fg-muted: #5D6675; --color-bg: #F4F6F9; --color-panel: #FFFFFF; --color-border-line: #DDE2EA;
+  --color-ok: #1F7A4D; --color-warn: #A66300; --color-bad: #B3261E;
+  --font-anthropic-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-anthropic-serif: "Source Serif 4", Georgia, serif;
+  --cds-font-size-caption: 12px; --cds-font-size-body: 14px; --cds-font-size-heading: 18px; --cds-font-size-title: 28px; --cds-font-weight-medium: 600;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 16px; --cds-gap-xl: 24px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 16px; --cds-pad-xl: 24px;
+  --cds-radius: 8px;
+  --cds-chart-muted: #A9B1BD; --cds-chart-grid: #E6EAF0; --cds-chart-axis: #B9C1CC; --cds-chart-reference: #8A94A3;
+  --cds-text-secondary: #5D6675; --cds-surface-popover: #FFFFFF; --cds-border: #DDE2EA; --cds-shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.12);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fg: #E8EBF0; --color-fg-muted: #9AA3B2; --color-bg: #0F141B; --color-panel: #171D26; --color-border-line: #2A3341;
+    --color-ok: #4CC38A; --color-warn: #E0A43A; --color-bad: #F2726B;
+    --cds-chart-muted: #4A5463; --cds-chart-grid: #232B37; --cds-chart-axis: #3A4453; --cds-chart-reference: #6B7585;
+    --cds-text-secondary: #9AA3B2; --cds-surface-popover: #1E2530; --cds-border: #2A3341; --cds-shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-bg); color: var(--color-fg); font: 14px/1.45 var(--font-anthropic-sans); }
+#dash-root { max-width: 1180px; margin: 0 auto; padding-block: max(24px, env(safe-area-inset-top, 0px)) 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.dash-select { appearance: none; font: inherit; color: var(--color-fg); background-color: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 6px;
+  padding: 6px 30px 6px 10px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238A94A3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; cursor: pointer; }
+.dash-skeleton { position: relative; color: transparent !important; }
+.dash-skeleton::after { content: ""; position: absolute; inset: 2px 0; border-radius: 4px; background: var(--color-border-line); opacity: .6; }
+[hidden] { display: none !important; }
+.site-foot { margin-top: 32px; color: var(--color-fg-muted); font-size: 12px; text-align: center; }
+</style>
+<script src="vendor/d3.min.js"></script>
+<script src="shim.js"></script>
+</head>
+<body>
+<div id="dash-root" lang="en">
+<meta name="dash-one-writer">
+<style>
+/* Graduate (SIL Open Font License), a collegiate block face, served from the dashboard's own uploads */
+@font-face { font-family: "Graduate"; src: url("fonts/graduate.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+.hof { --um-block: "Graduate", "Arial Black", Impact, sans-serif; }
+/* Michigan Wolverines: Blue #00274C and Maize #FFCB05. --um-ink flips to maize in dark mode so it stays readable. */
+.hof { --um-blue: #00274C; --um-maize: #FFCB05; --um-ink: #00274C; --um-ink-2: #FFCB05; --um-ink-2-edge: #00274C; --um-blue-soft: rgba(0, 39, 76, 0.06); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hof { --um-ink: #FFCB05; --um-ink-2: #5B7FB0; --um-ink-2-edge: #5B7FB0; --um-blue-soft: rgba(255, 203, 5, 0.07); } }
+:root[data-theme="dark"] .hof { --um-ink: #FFCB05; --um-ink-2: #5B7FB0; --um-ink-2-edge: #5B7FB0; --um-blue-soft: rgba(255, 203, 5, 0.07); }
+.hof { display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); color: var(--color-fg); }
+.hof h1 { font-family: var(--um-block); font-weight: 400; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.15; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.hof h2 { font-family: var(--um-block); text-transform: uppercase; letter-spacing: 0.03em; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; color: var(--um-ink); }
+.hof h3 { font-family: var(--um-block); text-transform: uppercase; letter-spacing: 0.03em; font-size: var(--cds-font-size-body); font-weight: 400; margin: 0; color: var(--um-ink); }
+.hof p { margin: 0; max-width: 70ch; line-height: 1.5; }
+.hof-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); background: var(--um-blue); color: #FFFFFF; border-radius: var(--cds-radius); padding: var(--cds-pad-xl) var(--cds-pad-xl); border-bottom: 6px solid var(--um-maize); }
+.hof-head h1 { color: var(--um-maize); }
+.hof-head .hof-eyebrow { color: var(--um-maize); opacity: 0.9; }
+.hof-head .hof-muted { color: rgba(255, 255, 255, 0.72); }
+.hof-head p { color: #FFFFFF; }
+.hof-eyebrow { font-size: var(--cds-font-size-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted); }
+.hof-muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.hof-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--cds-gap-md); }
+.hof-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+.hof-tiles .hof-tile, .hof-stats .hof-tile { background: var(--um-blue); border-color: var(--um-blue); box-shadow: 0 2px 4px rgba(0, 39, 76, 0.2), 0 8px 18px rgba(0, 39, 76, 0.12); }
+.hof-tiles .hof-tile .hof-muted, .hof-stats .hof-tile .hof-muted { color: rgba(255, 255, 255, 0.78); }
+.hof-tiles .hof-tile b, .hof-stats .hof-tile b { color: var(--um-maize) !important; }
+.hof-tile b { font-family: var(--um-block); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; color: var(--um-ink); }
+.hof-tabs { display: flex; flex-wrap: wrap; gap: 4px; background: var(--um-blue); padding: 6px; border-radius: calc(var(--cds-radius) + 4px); box-shadow: 0 2px 4px rgba(0, 39, 76, 0.18), 0 8px 20px rgba(0, 39, 76, 0.14); border-bottom: 3px solid var(--um-maize); }
+.hof-tab { appearance: none; background: transparent; border: 0; border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); font: inherit; font-family: var(--um-block); font-size: var(--cds-font-size-caption); letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255, 255, 255, 0.82); cursor: pointer; transition: background .15s, color .15s, transform .15s; }
+.hof-tab:hover { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; }
+.hof-tab[aria-selected="true"] { background: var(--um-maize); color: var(--um-blue); box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25), inset 0 -2px 0 rgba(0, 39, 76, 0.25); transform: translateY(-1px); }
+.hof-tab:focus-visible { outline: 2px solid var(--um-maize); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .hof-tab { transition: none; } .hof-tab[aria-selected="true"] { transform: none; } }
+.hof-section { display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.hof-block { display: flex; flex-direction: column; gap: var(--cds-gap-md); min-width: 0; }
+.hof-section > .hof-block:not(#champions) { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: calc(var(--cds-radius) + 2px); padding: var(--cds-pad-lg); box-shadow: 0 1px 2px rgba(0, 39, 76, 0.08), 0 6px 16px rgba(0, 39, 76, 0.07); }
+.hof-row { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: center; }
+.hof-champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: var(--cds-gap-md); min-height: 120px; }
+.hof-champ { box-shadow: 0 2px 4px rgba(0, 39, 76, 0.2), 0 10px 22px rgba(0, 39, 76, 0.16); background: var(--um-blue); color: #FFFFFF; border: 2px solid var(--um-maize); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+.hof-champ .yr { font-family: var(--um-block); font-size: var(--cds-font-size-title); line-height: 1; color: var(--um-maize); padding-bottom: var(--cds-pad-sm); border-bottom: 2px solid var(--um-maize); margin-bottom: var(--cds-gap-xs); }
+.hof-champ .who { font-family: var(--um-block); text-transform: uppercase; letter-spacing: 0.03em; color: #FFFFFF; overflow-wrap: anywhere; }
+.hof-champ .team { color: rgba(255, 255, 255, 0.72); font-size: var(--cds-font-size-caption); overflow-wrap: anywhere; }
+.hof-champ dl { display: grid; grid-template-columns: auto 1fr; gap: 2px var(--cds-gap-sm); margin: var(--cds-gap-xs) 0 0; font-size: var(--cds-font-size-caption); }
+.hof-champ dt { color: var(--um-maize); }
+.hof-champ dd { margin: 0; color: #FFFFFF; overflow-wrap: anywhere; }
+.hof-wrap { overflow-x: auto; }
+.hof-table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-body); }
+.hof-table th, .hof-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.hof-table th { font-size: var(--cds-font-size-caption); color: rgba(255, 255, 255, 0.92); background: var(--um-blue); font-weight: var(--cds-font-weight-medium); border-bottom: 3px solid var(--um-maize); }
+.hof-table thead th:first-child { border-top-left-radius: var(--cds-radius); }
+.hof-table thead th:last-child { border-top-right-radius: var(--cds-radius); }
+.hof-grid tbody th.rowh { background: var(--um-blue); color: #FFFFFF; border-bottom-color: rgba(255, 255, 255, 0.15); }
+.hof-table tbody tr:nth-child(even) td { background: var(--um-blue-soft); }
+.hof-table td.n, .hof-table th.n { text-align: right; }
+.hof-table td.wrap { white-space: normal; min-width: 180px; }
+.hof-table tr.me td { font-weight: var(--cds-font-weight-medium); }
+.hof-chart { position: relative; min-height: 220px; }
+.hof-chart svg text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+.hof-chart .axis line, .hof-chart .axis path { stroke: var(--cds-chart-axis); }
+.hof-chart .grid line { stroke: var(--cds-chart-grid); }
+.hof-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: 6px 8px; font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.hof-grid td, .hof-grid th { text-align: center; padding: 6px 8px; }
+.hof-grid th.rowh { text-align: left; }
+.hof-grid td.self { color: var(--color-fg-muted); }
+.hof-grid td { font-variant-numeric: tabular-nums; }
+.hof-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--cds-gap-md); }
+.hof-kgrid td { vertical-align: top; white-space: normal; min-width: 120px; line-height: 1.5; }
+.hof-rules { margin: 0; padding-left: 1.2em; line-height: 1.6; max-width: 75ch; }
+.hof-table tr.out td { color: var(--color-fg-muted); }
+.hof details summary { cursor: pointer; color: var(--color-fg-muted); }
+.hof details ul { margin: var(--cds-gap-sm) 0 0; padding-left: 1.2em; line-height: 1.6; max-width: 75ch; }
+@media print { .hof-section[hidden] { display: flex !important; break-before: page; } .hof-tabs { display: none; } }
+</style>
+
+<div class="hof">
+  <header class="hof-head" id="top">
+    <span class="hof-eyebrow">Straight Cash Homie · keeper league · Sleeper era</span>
+    <h1>Straight Cash Homie Hall of Fame</h1>
+    <p data-draw="lede">—</p>
+    <p class="hof-muted">Covers every Sleeper season from 2020 on. The league's earlier ESPN years aren't included because that data is no longer available.</p>
+  </header>
+
+  <div class="hof-tiles" id="tiles">
+    <div class="hof-tile"><span class="hof-muted">Completed seasons</span><b data-draw="t_seasons" data-source="summary" data-field="seasons_complete" data-row="0">—</b></div>
+    <div class="hof-tile"><span class="hof-muted">Games played</span><b data-draw="t_games" data-source="summary" data-field="games" data-row="0">—</b></div>
+    <div class="hof-tile"><span class="hof-muted">Managers</span><b data-draw="t_managers" data-source="summary" data-field="managers" data-row="0">—</b></div>
+    <div class="hof-tile"><span class="hof-muted">Highest weekly score</span><b data-draw="t_high" data-source="summary" data-field="high_score" data-row="0">—</b></div>
+  </div>
+
+  <nav class="hof-tabs" role="tablist" aria-label="Sections">
+    <button class="hof-tab" role="tab" data-tab="now" aria-selected="true">This season</button>
+    <button class="hof-tab" role="tab" data-tab="overview" aria-selected="false">Hall of Champions</button>
+    <button class="hof-tab" role="tab" data-tab="records" aria-selected="false">Record book</button>
+    <button class="hof-tab" role="tab" data-tab="rivalries" aria-selected="false">Rivalries</button>
+    <button class="hof-tab" role="tab" data-tab="franchises" aria-selected="false">Franchises</button>
+    <button class="hof-tab" role="tab" data-tab="keep" aria-selected="false">Keepers and draft</button>
+    <button class="hof-tab" role="tab" data-tab="moves" aria-selected="false">Trades and waivers</button>
+  </nav>
+
+  <section class="hof-section" id="now">
+    <div class="hof-block" id="season-table">
+      <div class="hof-row">
+        <h2>Standings</h2>
+        <select class="dash-select" data-draw="season_pick" data-source="team_seasons" aria-label="Season"></select>
+      </div>
+      <p class="hof-muted" data-draw="season_note">—</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="team_seasons" data-row-key="key">
+          <thead><tr><th data-field="rank">Rank</th><th data-field="manager">Manager</th><th data-field="team">Team name</th><th class="n" data-field="w">W</th><th class="n" data-field="l">L</th>
+            <th class="n" data-field="pf">Points for</th><th class="n" data-field="pa">Points against</th><th class="n" data-field="max_pf">Max possible</th><th class="n" data-field="finish">Final finish</th></tr></thead>
+          <tbody data-draw="season_body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hof-section" id="overview" hidden>
+    <div class="hof-block" id="champions">
+      <h2>Champions</h2>
+      <div class="hof-champs" data-draw="champs" data-source="champions"></div>
+    </div>
+    <div class="hof-block" id="alltime">
+      <h2>All-time standings</h2>
+      <p class="hof-muted">Regular season record and points across every Sleeper season, including this season so far. Finishes and titles count completed seasons only.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="alltime" data-row-key="key">
+          <thead><tr>
+            <th data-field="manager">Manager</th><th class="n" data-field="titles">Titles</th><th class="n" data-field="finals">Finals</th>
+            <th class="n" data-field="playoffs">Playoffs</th><th class="n" data-field="w">W</th><th class="n" data-field="l">L</th>
+            <th class="n" data-field="pct">Win %</th><th class="n" data-field="pf">Points for</th><th class="n" data-field="pa">Points against</th>
+            <th class="n" data-field="po_w">Playoff W</th><th class="n" data-field="po_l">Playoff L</th><th class="n" data-field="avg_finish">Avg finish</th>
+          </tr></thead>
+          <tbody data-draw="alltime_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="luck">
+      <h2>Schedule luck</h2>
+      <p class="hof-muted">Each row runs from expected wins (open dot) to actual wins (solid dot). Expected wins come from the all-play record: each week, the share of the other nine teams your score would have beaten.</p>
+      <div class="hof-chart" data-draw="luck_chart" data-source="alltime"></div>
+    </div>
+  </section>
+
+  <section class="hof-section" id="records" hidden>
+    <div class="hof-block" id="rec-games">
+      <div class="hof-row">
+        <h2>Single game records</h2>
+        <select class="dash-select" id="rec-scope" aria-label="Which games">
+          <option value="all">All games</option>
+          <option value="regular">Regular season</option>
+          <option value="playoffs">Playoffs</option>
+        </select>
+      </div>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="records" data-row-key="key">
+          <thead><tr><th data-field="label">Record</th><th data-field="holder">Holder</th><th class="n" data-field="value">Value</th><th data-field="when">When</th><th data-field="detail">Details</th></tr></thead>
+          <tbody data-draw="rec_game"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="rec-seasons">
+      <h2>Season records</h2>
+      <p class="hof-muted">Completed regular seasons only.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="records" data-row-key="key">
+          <thead><tr><th data-field="label">Record</th><th data-field="holder">Holder</th><th class="n" data-field="value">Value</th><th data-field="when">When</th><th data-field="detail">Details</th></tr></thead>
+          <tbody data-draw="rec_season"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="rec-streaks">
+      <h2>Streaks</h2>
+      <p class="hof-muted">Consecutive regular season games, carried across seasons.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="records" data-row-key="key">
+          <thead><tr><th data-field="label">Record</th><th data-field="holder">Holder</th><th class="n" data-field="value">Value</th><th data-field="when">When</th><th data-field="detail">Details</th></tr></thead>
+          <tbody data-draw="rec_streak"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="rec-top5">
+      <div class="hof-row">
+        <h2>Top 5</h2>
+        <select class="dash-select" id="rec-cat" aria-label="Record">
+          <option value="high_score">Highest score</option>
+          <option value="low_score">Lowest score</option>
+          <option value="blowout">Biggest blowout</option>
+          <option value="closest">Closest game</option>
+          <option value="combined">Highest combined score</option>
+          <option value="high_loss">Highest score in a loss</option>
+          <option value="low_win">Lowest score in a win</option>
+          <option value="most_pf">Most points in a season</option>
+          <option value="fewest_pf">Fewest points in a season</option>
+          <option value="best_record">Best regular season</option>
+          <option value="worst_record">Worst regular season</option>
+          <option value="most_pa">Most points against in a season</option>
+          <option value="weekly_highs">Most weekly high scores in a season</option>
+          <option value="lucky">Luckiest season</option>
+          <option value="unlucky">Unluckiest season</option>
+          <option value="win_streak">Longest win streak</option>
+          <option value="loss_streak">Longest losing streak</option>
+        </select>
+      </div>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="records" data-row-key="key">
+          <thead><tr><th data-field="rank">Rank</th><th data-field="holder">Holder</th><th class="n" data-field="value">Value</th><th data-field="when">When</th><th data-field="detail">Details</th></tr></thead>
+          <tbody data-draw="rec_top5"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="rec-players">
+      <h2>Best single-game player performances</h2>
+      <p class="hof-muted">Points scored by a player in a starting lineup.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="player_games" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th class="n" data-field="pts">Points</th><th data-field="manager">Started by</th><th class="n" data-field="season">Season</th><th class="n" data-field="week">Week</th></tr></thead>
+          <tbody data-draw="players_body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hof-section" id="rivalries" hidden>
+    <div class="hof-block" id="h2h-grid">
+      <h2>Head-to-head grid</h2>
+      <p class="hof-muted">Each row's record against each column, all games including playoffs. Darker cells are more lopsided: blue means the row manager leads, maize means they trail.</p>
+      <div class="hof-wrap" data-draw="h2h_grid" data-source="h2h"></div>
+    </div>
+    <div class="hof-block" id="h2h-detail">
+      <div class="hof-row">
+        <h2>Rivalry detail</h2>
+        <select class="dash-select" data-draw="h2h_pick" data-source="alltime" aria-label="Manager"></select>
+      </div>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="h2h" data-row-key="key">
+          <thead><tr><th data-field="opponent">Opponent</th><th class="n" data-field="games">Games</th><th class="n" data-field="w">W</th><th class="n" data-field="l">L</th>
+            <th class="n" data-field="pf">Points for</th><th class="n" data-field="pa">Points against</th><th class="n" data-field="po_w">Playoff W</th><th class="n" data-field="po_l">Playoff L</th></tr></thead>
+          <tbody data-draw="h2h_body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hof-section" id="franchises" hidden>
+    <div class="hof-block" id="fr-head">
+      <div class="hof-row">
+        <h2>Franchise</h2>
+        <select class="dash-select" data-draw="fr_pick" data-source="alltime" aria-label="Manager"></select>
+      </div>
+      <div class="hof-stats" data-draw="fr_stats" data-source="alltime"></div>
+    </div>
+    <div class="hof-block" id="fr-chart">
+      <h3>Final finish by season</h3>
+      <div class="hof-chart" data-draw="fr_chart" data-source="team_seasons"></div>
+    </div>
+    <div class="hof-block" id="fr-seasons">
+      <h3>Season by season</h3>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="team_seasons" data-row-key="key">
+          <thead><tr><th data-field="season">Season</th><th data-field="team">Team name</th><th class="n" data-field="w">W</th><th class="n" data-field="l">L</th>
+            <th class="n" data-field="pf">Points for</th><th class="n" data-field="pa">Points against</th><th class="n" data-field="rank">Reg. season rank</th><th class="n" data-field="finish">Final finish</th></tr></thead>
+          <tbody data-draw="fr_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="fr-keepers">
+      <h3>Keepers</h3>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="keepers" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th class="n" data-field="times_kept">Times kept</th><th data-field="seasons">Seasons</th><th data-field="rounds">Round used</th><th class="n" data-field="pts">Starter points</th></tr></thead>
+          <tbody data-draw="fr_keepers"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hof-section" id="keep" hidden>
+    <div class="hof-block" id="kn-head">
+      <h2>2027 keeper options</h2>
+      <p>Who each manager can keep for the 2027 draft and which pick it costs, from current Sleeper rosters. Rosters change until the keeper deadline, so check again before you submit.</p>
+      <div class="hof-tile" id="kn-rules">
+        <h3>League keeper rules</h3>
+        <ul class="hof-rules">
+          <li>Up to 2 keepers per team, and not at the same position.</li>
+          <li>A player can be kept for at most 2 straight seasons, no matter whose roster he was on. Drafted in 2019, kept in 2020 and 2021, back in the pool for the 2022 draft.</li>
+          <li>You lose the pick in the round your keeper was drafted. It has to be your own original pick in that round, not one you got in a trade.</li>
+          <li>A keeper who was a free agent or waiver pickup costs your 12th round pick.</li>
+          <li>A player who was drafted, dropped and picked up again stays tied to the round he was drafted in, not the 12th.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hof-block" id="kn-table">
+      <div class="hof-row">
+        <h2>Roster</h2>
+        <select class="dash-select" data-draw="kn_pick" data-source="keeper_options" aria-label="Manager"></select>
+      </div>
+      <p class="hof-muted">Points are each player's 2026 total while on any team in the league, through the last completed week.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="keeper_options" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="nfl_team">NFL</th><th data-field="status">Status</th>
+            <th class="n" data-field="cost_round">Costs round</th><th data-field="cost_basis">Why that round</th><th class="n" data-field="pts">2026 points</th></tr></thead>
+          <tbody data-draw="kn_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="kn-maxed">
+      <h2>Not eligible for 2027</h2>
+      <p class="hof-muted">Players kept in both 2025 and 2026. They go back into the draft pool.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="keeper_options" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="manager">On roster of</th><th data-field="status">Status</th><th class="n" data-field="pts">2026 points</th></tr></thead>
+          <tbody data-draw="kn_maxed"></tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="hof-block" id="keepers">
+      <h2>Keeper hall</h2>
+      <p class="hof-muted">Players kept by the same manager, most times first. Starter points are what the player scored in that manager's lineup in the seasons he was kept.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="keepers" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="manager">Manager</th><th class="n" data-field="times_kept">Times kept</th><th data-field="seasons">Seasons</th><th data-field="rounds">Round used</th><th class="n" data-field="pts">Starter points</th></tr></thead>
+          <tbody data-draw="keepers_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="keeper-grid">
+      <h2>Keepers by year</h2>
+      <p class="hof-muted">Each manager's keepers with the round they cost, the same layout as the commissioner's tracker.</p>
+      <div class="hof-wrap" data-draw="kgrid" data-source="picks"></div>
+    </div>
+    <div class="hof-block" id="steals">
+      <h2>Draft steals</h2>
+      <p class="hof-muted">Round 8 or later, ranked by points scored in the drafting manager's lineup that season. Keepers excluded.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="draft_value" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="manager">Drafted by</th><th class="n" data-field="season">Season</th><th class="n" data-field="round">Round</th><th class="n" data-field="pick">Pick</th><th class="n" data-field="pts">Starter points</th></tr></thead>
+          <tbody data-draw="steals_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="busts">
+      <h2>Draft busts</h2>
+      <p class="hof-muted">Rounds 1 to 3, fewest points in the drafting manager's lineup that season. Keepers excluded. Injuries count against the pick.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="draft_value" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="manager">Drafted by</th><th class="n" data-field="season">Season</th><th class="n" data-field="round">Round</th><th class="n" data-field="pick">Pick</th><th class="n" data-field="pts">Starter points</th></tr></thead>
+          <tbody data-draw="busts_body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hof-section" id="moves" hidden>
+    <div class="hof-block" id="trades">
+      <h2>Trade log</h2>
+      <p class="hof-muted">Points are what each side's incoming players scored in that manager's lineup for the rest of that season. Draft picks score nothing here.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="trades" data-row-key="key">
+          <thead><tr><th data-field="season">Season</th><th data-field="week">Week</th><th data-field="side_a">Manager</th><th data-field="a_got">Received</th><th class="n" data-field="a_pts">Points</th><th data-field="side_b">Manager</th><th data-field="b_got">Received</th><th class="n" data-field="b_pts">Points</th></tr></thead>
+          <tbody data-draw="trades_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="pickups">
+      <h2>Best pickups</h2>
+      <p class="hof-muted">Waiver and free agent adds, ranked by points scored in the new manager's lineup for the rest of that season.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="pickups" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="manager">Added by</th><th data-field="how">How</th><th class="n" data-field="season">Season</th><th class="n" data-field="week">Week</th><th class="n" data-field="pts">Starter points</th></tr></thead>
+          <tbody data-draw="pickups_body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="hof-block" id="regret">
+      <h2>Drop regret</h2>
+      <p class="hof-muted">Players a manager dropped who then scored for someone else's lineup the same season.</p>
+      <div class="hof-wrap">
+        <table class="hof-table" data-source="drop_regret" data-row-key="key">
+          <thead><tr><th data-field="player">Player</th><th data-field="pos">Pos</th><th data-field="dropped_by">Dropped by</th><th class="n" data-field="season">Season</th><th class="n" data-field="week">Week</th><th class="n" data-field="pts_for_others">Points for others</th><th data-field="mostly_for">Mostly for</th></tr></thead>
+          <tbody data-draw="regret_body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <details id="notes">
+    <summary>How these numbers are worked out</summary>
+    <ul>
+      <li>All data comes from the league's Sleeper history, following each season back to the one before it, starting in 2020.</li>
+      <li>This season counts only completed weeks. It adds to all-time records and the current standings, but not to titles, finishes or season records.</li>
+      <li>Places 1 to 6 come from the playoff bracket. Places 7 to 10 follow regular season rank. Last place means the worst regular season record.</li>
+      <li>Sleeper didn't record owners for two teams in 2021. They're credited to the managers who ran those teams in 2020 (Denny and Richie), which the commissioner's keeper tracker confirms.</li>
+      <li>Managers appear under their first names. Denny and Richie left after 2021.</li>
+      <li>2020 keepers come from the commissioner's tracker, since Sleeper didn't flag keepers that year. Later years use Sleeper's keeper flags, with the commissioner's corrections: in 2024 each team carried over only one keeper where the tracker shows one, and players sent back to the draft and redrafted (Christian McCaffrey in 2021, Jonathan Taylor in 2023) count as draft picks, not keepers.</li>
+      <li>Starter points only count weeks a player was in that manager's starting lineup.</li>
+      <li>2027 keeper costs use the round a player went in the 2026 draft, as a pick or a keeper. Anyone not taken in the 2026 draft counts as a pickup at round 12. The 2-season limit counts keeper years in a row on any roster, using Sleeper's keeper flags back to 2021.</li>
+    </ul>
+  </details>
+</div>
+
+<script>
+window.HOF = window.HOF || { scope: 'all', cat: 'high_score', fr: null, rival: null, season: null, kn: null };
+window.HOFfmt = {
+  pts: (v) => (v == null ? '' : d3.format('.2f')(v)),
+  one: (v) => (v == null ? '' : d3.format('.1f')(v)),
+  int: (v) => (v == null ? '' : String(v)),
+  place: (v) => { if (v == null) return ''; const s = ['th', 'st', 'nd', 'rd'], m = v % 100; return v + (s[(m - 20) % 10] || s[m] || s[0]); },
+};
+// Fills a table body. cols: [{f, fmt, n}] where n marks a number column.
+window.HOFfill = (tbody, src, rows, cols, extra) => {
+  const st = dash.data(src).status;
+  tbody.replaceChildren();
+  if (st !== 'ok' && !(Array.isArray(rows) && rows.length)) {
+    const tr = document.createElement('tr'); const td = document.createElement('td');
+    td.colSpan = cols.length; td.className = 'hof-muted';
+    td.textContent = st === 'error' ? 'This table didn’t load.' : st === 'loading' ? 'Loading…' : '';
+    tr.append(td); tbody.append(tr); return;
+  }
+  for (const r of rows) {
+    const tr = document.createElement('tr');
+    tr.dataset.key = String(r.key).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D');
+    if (extra) extra(tr, r);
+    for (const c of cols) {
+      const td = document.createElement('td');
+      if (c.n) td.className = 'n';
+      if (c.wrap) td.className = 'wrap';
+      const v = r[c.f];
+      td.textContent = c.fmt ? c.fmt(v, r) : (v == null ? '' : String(v));
+      tr.append(td);
+    }
+    tbody.append(tr);
+  }
+};
+window.HOFmark = (tag, src, field, where, text) => {
+  const e = document.createElement(tag);
+  e.dataset.source = src; e.dataset.field = field;
+  if (where) e.dataset.where = where;
+  e.textContent = text;
+  return e;
+};
+window.HOFenc = (v) => String(v).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D');
+</script>
+
+<script>
+dash.calc('summary', {
+  inputs: ['team_seasons', 'games'],
+  title: 'League totals',
+  description: 'Completed seasons, games played, managers and the highest single-team weekly score.',
+  fn: (teamSeasons, games) => {
+    const seasons = new Set(teamSeasons.filter((t) => t.complete).map((t) => t.season));
+    const managers = new Set(teamSeasons.map((t) => t.manager));
+    let high = 0;
+    for (const g of games) high = Math.max(high, g.home_pts, g.away_pts);
+    return [{ seasons_complete: seasons.size, games: games.length, managers: managers.size, high_score: high }];
+  },
+});
+
+dash.calc('alltime', {
+  inputs: ['team_seasons', 'games', 'team_weeks'],
+  title: 'All-time manager stats',
+  description: 'Regular season record and points, titles, playoff results and schedule luck for each manager.',
+  fn: (teamSeasons, games, teamWeeks) => {
+    const by = {};
+    const get = (m) => (by[m] ??= { manager: m, seasons: 0, w: 0, l: 0, t: 0, pf: 0, pa: 0, titles: 0, finals: 0, playoffs: 0, fsum: 0, fn: 0, best: null, po_w: 0, po_l: 0, exp: 0 });
+    for (const s of teamSeasons) {
+      const r = get(s.manager);
+      r.seasons++; r.w += s.w; r.l += s.l; r.t += s.t; r.pf += s.pf; r.pa += s.pa;
+      if (s.complete) {
+        if (s.finish === 1) r.titles++;
+        if (s.finish <= 2) r.finals++;
+        if (s.playoffs) r.playoffs++;
+        r.fsum += s.finish; r.fn++;
+        r.best = r.best == null ? s.finish : Math.min(r.best, s.finish);
+      }
+    }
+    for (const g of games) {
+      if (g.kind !== 'playoff' && g.kind !== 'final') continue;
+      if (g.home_pts === g.away_pts) continue;
+      const homeWon = g.home_pts > g.away_pts;
+      get(g.home)[homeWon ? 'po_w' : 'po_l']++;
+      get(g.away)[homeWon ? 'po_l' : 'po_w']++;
+    }
+    for (const w of teamWeeks) {
+      const n = w.allplay_w + w.allplay_l + w.allplay_t;
+      if (n) get(w.manager).exp += (w.allplay_w + w.allplay_t / 2) / n;
+    }
+    const r1 = (x) => Math.round(x * 10) / 10, r2 = (x) => Math.round(x * 100) / 100;
+    return Object.values(by).map((r) => ({
+      key: r.manager, manager: r.manager, seasons: r.seasons, w: r.w, l: r.l, t: r.t,
+      pct: r1((100 * (r.w + r.t / 2)) / Math.max(1, r.w + r.l + r.t)), pf: r2(r.pf), pa: r2(r.pa),
+      titles: r.titles, finals: r.finals, playoffs: r.playoffs,
+      avg_finish: r.fn ? r1(r.fsum / r.fn) : null, best_finish: r.best,
+      po_w: r.po_w, po_l: r.po_l, exp_w: r1(r.exp), luck: r1(r.w - r.exp),
+    })).sort((a, b) => b.titles - a.titles || b.finals - a.finals || b.pct - a.pct);
+  },
+});
+
+dash.calc('champions', {
+  inputs: ['team_seasons'],
+  title: 'Champions by season',
+  description: 'Champion, runner-up, third place and last place for each completed season.',
+  fn: (teamSeasons) => {
+    const seasons = {};
+    for (const t of teamSeasons) if (t.complete) (seasons[t.season] ??= []).push(t);
+    return Object.entries(seasons).map(([season, ts]) => {
+      const at = (f) => ts.find((t) => t.finish === f);
+      const champ = at(1), last = ts.reduce((a, b) => (b.rank > a.rank ? b : a));
+      return {
+        key: season, season: Number(season), champion: champ.manager, champ_team: champ.team,
+        champ_record: `${champ.w}-${champ.l}${champ.t ? '-' + champ.t : ''}`, champ_seed: champ.rank,
+        runner_up: at(2)?.manager ?? '', third: at(3)?.manager ?? '', last: last.manager,
+      };
+    }).sort((a, b) => b.season - a.season);
+  },
+});
+
+dash.calc('h2h', {
+  inputs: ['games'],
+  title: 'Head-to-head records',
+  description: 'Every manager against every opponent, all games including playoffs and consolation games.',
+  fn: (games) => {
+    const by = {};
+    const add = (me, op, pm, po, playoff) => {
+      const r = (by[me + '|' + op] ??= { key: me + '|' + op, manager: me, opponent: op, games: 0, w: 0, l: 0, t: 0, pf: 0, pa: 0, po_w: 0, po_l: 0 });
+      r.games++; r.pf = Math.round((r.pf + pm) * 100) / 100; r.pa = Math.round((r.pa + po) * 100) / 100;
+      if (pm > po) { r.w++; if (playoff) r.po_w++; } else if (pm < po) { r.l++; if (playoff) r.po_l++; } else r.t++;
+    };
+    for (const g of games) {
+      const playoff = g.kind === 'playoff' || g.kind === 'final';
+      add(g.home, g.away, g.home_pts, g.away_pts, playoff);
+      add(g.away, g.home, g.away_pts, g.home_pts, playoff);
+    }
+    return Object.values(by);
+  },
+});
+
+dash.calc('records', {
+  inputs: ['games', 'team_seasons', 'team_weeks'],
+  title: 'Record book',
+  description: 'Top 5 holders of each single game, season and streak record.',
+  fn: (games, teamSeasons, teamWeeks) => {
+    const out = [];
+    const f2 = (x) => x.toFixed(2);
+    const top = (cat, label, scope, items, sortFn, map) => {
+      items.slice().sort(sortFn).slice(0, 5).forEach((it, i) => out.push({ key: `${cat}.${scope}.${i + 1}`, cat, label, scope, rank: i + 1, ...map(it) }));
+    };
+    const scopes = { all: () => true, regular: (g) => g.kind === 'regular', playoffs: (g) => g.kind === 'playoff' || g.kind === 'final' };
+    for (const [scope, keep] of Object.entries(scopes)) {
+      const gs = games.filter(keep);
+      const sides = gs.flatMap((g) => [
+        { me: g.home, op: g.away, pm: g.home_pts, po: g.away_pts, s: g.season, w: g.week },
+        { me: g.away, op: g.home, pm: g.away_pts, po: g.home_pts, s: g.season, w: g.week },
+      ]);
+      const decided = sides.filter((x) => x.pm > x.po);
+      const when = (x) => `${x.s} week ${x.w}`;
+      top('high_score', 'Highest score', scope, sides, (a, b) => b.pm - a.pm, (x) => ({ holder: x.me, value: x.pm, when: when(x), detail: `vs ${x.op}, ${f2(x.pm)} to ${f2(x.po)}` }));
+      top('low_score', 'Lowest score', scope, sides, (a, b) => a.pm - b.pm, (x) => ({ holder: x.me, value: x.pm, when: when(x), detail: `vs ${x.op}, ${f2(x.pm)} to ${f2(x.po)}` }));
+      top('blowout', 'Biggest blowout', scope, decided, (a, b) => (b.pm - b.po) - (a.pm - a.po), (x) => ({ holder: x.me, value: Math.round((x.pm - x.po) * 100) / 100, when: when(x), detail: `beat ${x.op}, ${f2(x.pm)} to ${f2(x.po)}` }));
+      top('closest', 'Closest game', scope, decided, (a, b) => (a.pm - a.po) - (b.pm - b.po), (x) => ({ holder: x.me, value: Math.round((x.pm - x.po) * 100) / 100, when: when(x), detail: `beat ${x.op}, ${f2(x.pm)} to ${f2(x.po)}` }));
+      top('combined', 'Highest combined score', scope, decided, (a, b) => (b.pm + b.po) - (a.pm + a.po), (x) => ({ holder: x.me, value: Math.round((x.pm + x.po) * 100) / 100, when: when(x), detail: `beat ${x.op}, ${f2(x.pm)} to ${f2(x.po)}` }));
+      top('high_loss', 'Highest score in a loss', scope, decided, (a, b) => b.po - a.po, (x) => ({ holder: x.op, value: x.po, when: when(x), detail: `lost to ${x.me}, ${f2(x.po)} to ${f2(x.pm)}` }));
+      top('low_win', 'Lowest score in a win', scope, decided, (a, b) => a.pm - b.pm, (x) => ({ holder: x.me, value: x.pm, when: when(x), detail: `beat ${x.op}, ${f2(x.pm)} to ${f2(x.po)}` }));
+    }
+    const done = teamSeasons.filter((t) => t.complete);
+    const rec = (t) => `${t.w}-${t.l}${t.t ? '-' + t.t : ''}`;
+    top('most_pf', 'Most points in a season', 'all', done, (a, b) => b.pf - a.pf, (t) => ({ holder: t.manager, value: t.pf, when: String(t.season), detail: `${rec(t)}, finished ${t.finish}` }));
+    top('fewest_pf', 'Fewest points in a season', 'all', done, (a, b) => a.pf - b.pf, (t) => ({ holder: t.manager, value: t.pf, when: String(t.season), detail: `${rec(t)}, finished ${t.finish}` }));
+    top('best_record', 'Best regular season', 'all', done, (a, b) => b.w - a.w || b.pf - a.pf, (t) => ({ holder: t.manager, value: t.w, when: String(t.season), detail: `${rec(t)}, ${f2(t.pf)} points, finished ${t.finish}` }));
+    top('worst_record', 'Worst regular season', 'all', done, (a, b) => a.w - b.w || a.pf - b.pf, (t) => ({ holder: t.manager, value: t.w, when: String(t.season), detail: `${rec(t)}, ${f2(t.pf)} points` }));
+    top('most_pa', 'Most points against in a season', 'all', done, (a, b) => b.pa - a.pa, (t) => ({ holder: t.manager, value: t.pa, when: String(t.season), detail: `${rec(t)}` }));
+    const doneSeasons = new Set(done.map((t) => t.season));
+    const highs = {}, exp = {};
+    for (const w of teamWeeks) {
+      if (!doneSeasons.has(w.season)) continue;
+      const k = w.season + '|' + w.manager;
+      if (w.allplay_l === 0 && w.allplay_t === 0) highs[k] = (highs[k] || 0) + 1;
+      const n = w.allplay_w + w.allplay_l + w.allplay_t;
+      exp[k] = (exp[k] || 0) + (w.allplay_w + w.allplay_t / 2) / n;
+    }
+    const hi = Object.entries(highs).map(([k, n]) => { const [s, m] = k.split('|'); return { s, m, n }; });
+    top('weekly_highs', 'Most weekly high scores in a season', 'all', hi, (a, b) => b.n - a.n, (x) => ({ holder: x.m, value: x.n, when: x.s, detail: `top score in the league ${x.n} times` }));
+    const lk = done.map((t) => { const e = exp[t.season + '|' + t.manager] || 0; return { t, e, d: Math.round((t.w - e) * 10) / 10 }; });
+    top('lucky', 'Luckiest season', 'all', lk, (a, b) => b.d - a.d, (x) => ({ holder: x.t.manager, value: x.d, when: String(x.t.season), detail: `${rec(x.t)} with ${x.e.toFixed(1)} expected wins` }));
+    top('unlucky', 'Unluckiest season', 'all', lk, (a, b) => a.d - b.d, (x) => ({ holder: x.t.manager, value: x.d, when: String(x.t.season), detail: `${rec(x.t)} with ${x.e.toFixed(1)} expected wins` }));
+    const byM = {};
+    for (const g of games.filter((g) => g.kind === 'regular')) {
+      (byM[g.home] ??= []).push({ s: g.season, w: g.week, r: Math.sign(g.home_pts - g.away_pts) });
+      (byM[g.away] ??= []).push({ s: g.season, w: g.week, r: Math.sign(g.away_pts - g.home_pts) });
+    }
+    const streaks = { 1: [], '-1': [] };
+    for (const [m, list] of Object.entries(byM)) {
+      list.sort((a, b) => a.s - b.s || a.w - b.w);
+      let run = null;
+      const close = () => { if (run && run.n > 1) streaks[run.r].push({ m, ...run }); };
+      for (const x of list) {
+        if (run && x.r === run.r) { run.n++; run.end = x; }
+        else { close(); run = x.r === 0 ? null : { r: x.r, n: 1, start: x, end: x }; }
+      }
+      close();
+    }
+    const span = (x) => `${x.start.s} week ${x.start.w} to ${x.end.s} week ${x.end.w}`;
+    top('win_streak', 'Longest win streak', 'all', streaks[1], (a, b) => b.n - a.n, (x) => ({ holder: x.m, value: x.n, when: span(x), detail: `${x.n} straight wins` }));
+    top('loss_streak', 'Longest losing streak', 'all', streaks[-1], (a, b) => b.n - a.n, (x) => ({ holder: x.m, value: x.n, when: span(x), detail: `${x.n} straight losses` }));
+    return out;
+  },
+});
+
+dash.calc('draft_value', {
+  inputs: ['picks', 'team_seasons'],
+  title: 'Draft steals and busts',
+  description: 'Late-round picks that scored the most and early picks that scored the least, completed seasons only, keepers excluded.',
+  fn: (picks, teamSeasons) => {
+    const done = new Set(teamSeasons.filter((t) => t.complete).map((t) => t.season));
+    const drafted = picks.filter((p) => !p.keeper && done.has(p.season));
+    const steals = drafted.filter((p) => p.round >= 8).sort((a, b) => b.pts - a.pts).slice(0, 15);
+    const busts = drafted.filter((p) => p.round <= 3 && p.pos !== 'K' && p.pos !== 'DEF').sort((a, b) => a.pts - b.pts).slice(0, 15);
+    return [
+      ...steals.map((p) => ({ key: p.key + '|steal', list: 'steal', season: p.season, round: p.round, pick: p.pick, manager: p.manager, player: p.player, pos: p.pos, pts: p.pts })),
+      ...busts.map((p) => ({ key: p.key + '|bust', list: 'bust', season: p.season, round: p.round, pick: p.pick, manager: p.manager, player: p.player, pos: p.pos, pts: p.pts })),
+    ];
+  },
+});
+</script>
+
+<script>
+(() => {
+  const tabs = document.querySelectorAll('.hof-tab');
+  const show = (id) => {
+    let found = false;
+    for (const t of tabs) {
+      const on = t.dataset.tab === id; if (on) found = true;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      const sec = document.getElementById(t.dataset.tab);
+      if (sec) sec.hidden = !on;
+    }
+    return found;
+  };
+  for (const t of tabs) t.addEventListener('click', () => { show(t.dataset.tab); dash.setLink(t.dataset.tab); });
+  const h = (location.hash || '').slice(1);
+  if (h && show(h)) dash.setLink(h);
+  const scope = document.getElementById('rec-scope');
+  if (scope) scope.addEventListener('change', () => { window.HOF.scope = scope.value; dash.draw('rec_game'); });
+  const cat = document.getElementById('rec-cat');
+  if (cat) cat.addEventListener('change', () => { window.HOF.cat = cat.value; dash.draw('rec_top5'); });
+  window.addEventListener('beforeprint', () => { for (const t of tabs) { const s = document.getElementById(t.dataset.tab); if (s) s.hidden = false; } });
+  window.addEventListener('afterprint', () => { const cur = [...tabs].find((t) => t.getAttribute('aria-selected') === 'true'); show(cur ? cur.dataset.tab : 'now'); });
+})();
+</script>
+
+<script>
+const F = window.HOFfmt;
+const ok = (id) => dash.data(id).status === 'ok';
+const tile = (name, field, fmt) => dash.draw(name, (el) => {
+  el.classList.toggle('dash-skeleton', dash.data('summary').status === 'loading');
+  const r = dash.data('summary').data; el.textContent = r && r[0] ? fmt(r[0][field]) : '—';
+});
+tile('t_seasons', 'seasons_complete', F.int);
+tile('t_games', 'games', F.int);
+tile('t_managers', 'managers', F.int);
+tile('t_high', 'high_score', F.pts);
+
+dash.draw('lede', (el) => {
+  const a = dash.data('alltime'), c = dash.data('champions');
+  el.classList.toggle('dash-skeleton', a.status === 'loading' || c.status === 'loading');
+  if (!ok('alltime') || !ok('champions') || !a.data.length || !c.data.length) { el.textContent = '—'; return; }
+  const lead = a.data[0], reign = c.data[0];
+  const tied = a.data.filter((r) => r.titles === lead.titles).map((r) => r.manager);
+  el.replaceChildren(
+    tied.length > 1 ? `${tied.join(' and ')} share the most titles with ` : `${lead.manager} has the most titles with `,
+    window.HOFmark('b', 'alltime', 'titles', 'manager=' + window.HOFenc(lead.manager), String(lead.titles)),
+    `. Reigning champion: ${reign.champion}, who won `,
+    window.HOFmark('b', 'champions', 'season', 'season=' + reign.season, String(reign.season)),
+    ` from the ${F.place(reign.champ_seed)} seed.`
+  );
+});
+
+dash.draw('champs', (el) => {
+  const c = dash.data('champions');
+  el.classList.toggle('dash-skeleton', c.status === 'loading');
+  el.replaceChildren();
+  if (c.status === 'error') { el.textContent = 'Champions didn’t load.'; return; }
+  if (!ok('champions')) return;
+  for (const r of c.data) {
+    const card = document.createElement('article'); card.className = 'hof-champ';
+    const w = 'season=' + r.season;
+    const yr = window.HOFmark('div', 'champions', 'season', w, String(r.season)); yr.className = 'yr';
+    const who = window.HOFmark('div', 'champions', 'champion', w, r.champion); who.className = 'who';
+    const team = window.HOFmark('div', 'champions', 'champ_team', w, r.champ_team || 'No team name'); team.className = 'team';
+    const dl = document.createElement('dl');
+    const row = (label, field, text) => { const dt = document.createElement('dt'); dt.textContent = label; const dd = window.HOFmark('dd', 'champions', field, w, text); dl.append(dt, dd); };
+    row('Record', 'champ_record', r.champ_record);
+    row('Runner-up', 'runner_up', r.runner_up);
+    row('Third', 'third', r.third);
+    row('Last place', 'last', r.last);
+    card.append(yr, who, team, dl);
+    el.append(card);
+  }
+});
+
+dash.draw('alltime_body', (el) => {
+  window.HOFfill(el, 'alltime', dash.data('alltime').data || [], [
+    { f: 'manager' }, { f: 'titles', n: 1 }, { f: 'finals', n: 1 }, { f: 'playoffs', n: 1 }, { f: 'w', n: 1 }, { f: 'l', n: 1 },
+    { f: 'pct', n: 1, fmt: F.one }, { f: 'pf', n: 1, fmt: F.pts }, { f: 'pa', n: 1, fmt: F.pts }, { f: 'po_w', n: 1 }, { f: 'po_l', n: 1 }, { f: 'avg_finish', n: 1, fmt: F.one },
+  ]);
+  for (const tr of el.querySelectorAll('tr')) {
+    const td = tr.children[6]; if (!td) continue;
+    const v = parseFloat(td.textContent); if (isNaN(v)) continue;
+    td.style.background = `linear-gradient(90deg, transparent ${100 - v}%, color-mix(in srgb, var(--um-ink) 22%, transparent) ${100 - v}%)`;
+  }
+});
+
+dash.draw('luck_chart', (el) => {
+  const a = dash.data('alltime');
+  el.classList.toggle('dash-skeleton', a.status === 'loading');
+  el.replaceChildren();
+  if (a.status === 'error') { el.textContent = 'This chart didn\u2019t load.'; return; }
+  if (!ok('alltime') || !a.data.length) return;
+  const rows = a.data.slice().sort((x, y) => y.luck - x.luck);
+  const W = el.clientWidth || 600, rowH = 28, top = 26, bottom = 28;
+  const H = top + bottom + rows.length * rowH;
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    .attr('aria-label', 'Dot chart of each manager\u2019s expected and actual regular season wins');
+  const probe = svg.append('g');
+  let left = 0, right = 0;
+  for (const r of rows) {
+    left = Math.max(left, probe.append('text').text(r.manager).node().getComputedTextLength());
+    right = Math.max(right, probe.append('text').text(d3.format('+.1f')(r.luck)).node().getComputedTextLength());
+  }
+  probe.remove(); left += 14; right += 14;
+  const x = d3.scaleLinear().domain([0, d3.max(rows, (r) => Math.max(r.w, r.exp_w))]).nice().range([left, W - right]);
+  const y = d3.scalePoint().domain(rows.map((r) => r.manager)).range([top + rowH / 2, H - bottom - rowH / 2]);
+  svg.append('g').attr('class', 'grid').selectAll('line').data(x.ticks(6)).join('line').attr('x1', (d) => x(d)).attr('x2', (d) => x(d)).attr('y1', top).attr('y2', H - bottom);
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - bottom})`).call(d3.axisBottom(x).ticks(6));
+  svg.append('text').attr('x', W - right).attr('y', 12).attr('text-anchor', 'end').text('Regular season wins');
+  svg.append('g').selectAll('text').data(rows).join('text').attr('x', left - 8).attr('y', (r) => y(r.manager)).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r.manager);
+  svg.append('g').selectAll('line').data(rows).join('line').attr('x1', (r) => x(r.exp_w)).attr('x2', (r) => x(r.w)).attr('y1', (r) => y(r.manager)).attr('y2', (r) => y(r.manager))
+    .style('stroke', (r) => (r.luck >= 0 ? 'var(--um-ink)' : 'var(--um-ink-2-edge)')).style('stroke-width', 3);
+  const tip = document.createElement('div'); tip.className = 'hof-tip'; tip.hidden = true; el.append(tip);
+  const showTip = (ev, r) => {
+    tip.hidden = false; tip.textContent = `${r.manager}: ${r.w} wins, ${r.exp_w} expected (${d3.format('+.1f')(r.luck)})`;
+    const [px, py] = d3.pointer(ev, el); tip.style.left = Math.max(4, Math.min(px + 12, W - tip.offsetWidth - 4)) + 'px'; tip.style.top = (py + 12) + 'px';
+  };
+  svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (r) => x(r.exp_w)).attr('cy', (r) => y(r.manager)).attr('r', 5)
+    .style('fill', 'var(--color-bg)').style('stroke', 'var(--color-fg-muted)').style('stroke-width', 2).on('pointermove', showTip).on('pointerleave', () => { tip.hidden = true; });
+  svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (r) => x(r.w)).attr('cy', (r) => y(r.manager)).attr('r', 6)
+    .style('fill', (r) => (r.luck >= 0 ? 'var(--um-ink)' : 'var(--um-ink-2)')).style('stroke', 'var(--um-ink-2-edge)').style('stroke-width', 1).on('pointermove', showTip).on('pointerleave', () => { tip.hidden = true; });
+  svg.append('g').selectAll('text').data(rows).join('text').attr('x', W - 2).attr('text-anchor', 'end').attr('y', (r) => y(r.manager)).attr('dy', '0.35em').text((r) => d3.format('+.1f')(r.luck));
+});
+
+const recCols = [{ f: 'label' }, { f: 'holder' }, { f: 'value', n: 1, fmt: (v) => (Number.isInteger(v) ? String(v) : Math.abs(v) < 20 && !Number.isInteger(v * 100) ? v.toFixed(1) : v.toFixed(2)) }, { f: 'when' }, { f: 'detail' }];
+const recRows = (cats, scope) => (dash.data('records').data || []).filter((r) => r.rank === 1 && cats.includes(r.cat) && r.scope === scope);
+dash.draw('rec_game', (el) => {
+  window.HOFfill(el, 'records', recRows(['high_score', 'low_score', 'blowout', 'closest', 'combined', 'high_loss', 'low_win'], window.HOF.scope), recCols);
+});
+dash.draw('rec_season', (el) => {
+  window.HOFfill(el, 'records', recRows(['most_pf', 'fewest_pf', 'best_record', 'worst_record', 'most_pa', 'weekly_highs', 'lucky', 'unlucky'], 'all'), recCols);
+});
+dash.draw('rec_streak', (el) => {
+  window.HOFfill(el, 'records', recRows(['win_streak', 'loss_streak'], 'all'), recCols);
+});
+dash.draw('rec_top5', (el) => {
+  const rows = (dash.data('records').data || []).filter((r) => r.cat === window.HOF.cat && r.scope === 'all');
+  window.HOFfill(el, 'records', rows, [{ f: 'rank' }, ...recCols.slice(1)]);
+});
+dash.draw('players_body', (el) => {
+  window.HOFfill(el, 'player_games', dash.data('player_games').data || [], [{ f: 'player' }, { f: 'pos' }, { f: 'pts', n: 1, fmt: F.pts }, { f: 'manager' }, { f: 'season', n: 1 }, { f: 'week', n: 1 }]);
+});
+
+dash.draw('h2h_grid', (el) => {
+  const h = dash.data('h2h'), a = dash.data('alltime');
+  el.classList.toggle('dash-skeleton', h.status === 'loading');
+  el.replaceChildren();
+  if (h.status === 'error') { el.textContent = 'The grid didn’t load.'; return; }
+  if (!ok('h2h') || !ok('alltime')) return;
+  const names = a.data.map((r) => r.manager);
+  const idx = {}; for (const r of h.data) idx[r.key] = r;
+  const t = document.createElement('table'); t.className = 'hof-table hof-grid';
+  const thead = document.createElement('thead'); const hr = document.createElement('tr');
+  hr.append(document.createElement('th'));
+  for (const n of names) { const th = document.createElement('th'); th.textContent = n; hr.append(th); }
+  thead.append(hr); t.append(thead);
+  const tb = document.createElement('tbody');
+  for (const m of names) {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th'); th.className = 'rowh'; th.textContent = m; tr.append(th);
+    for (const o of names) {
+      const td = document.createElement('td');
+      const r = idx[m + '|' + o];
+      if (m === o) { td.className = 'self'; td.textContent = '·'; }
+      else if (!r) { td.className = 'self'; td.textContent = ''; }
+      else { td.textContent = `${r.w}-${r.l}${r.t ? '-' + r.t : ''}`; const share = (r.w + r.t / 2) / r.games; const amt = Math.round(Math.abs(share - 0.5) * 2 * 45); td.style.background = share === 0.5 ? '' : `color-mix(in srgb, ${share > 0.5 ? 'var(--um-ink)' : 'var(--um-ink-2)'} ${amt}%, transparent)`; td.title = `${m} vs ${o}: ${r.games} games`; }
+      tr.append(td);
+    }
+    tb.append(tr);
+  }
+  t.append(tb); el.append(t);
+});
+
+const managerPick = (name, stateKey, redraw) => dash.draw(name, (sel) => {
+  const a = dash.data('alltime');
+  const names = ok('alltime') ? a.data.map((r) => r.manager).sort((x, y) => x.localeCompare(y)) : [];
+  if (!window.HOF[stateKey] && names.length) window.HOF[stateKey] = names.includes('Billy') ? 'Billy' : names[0];
+  sel.replaceChildren(...names.map((n) => new Option(n, n)));
+  sel.value = window.HOF[stateKey] || '';
+  sel.onchange = () => { window.HOF[stateKey] = sel.value; for (const d of redraw) dash.draw(d); };
+});
+managerPick('h2h_pick', 'rival', ['h2h_body']);
+managerPick('fr_pick', 'fr', ['fr_stats', 'fr_chart', 'fr_body', 'fr_keepers']);
+
+dash.draw('h2h_body', (el) => {
+  const me = window.HOF.rival;
+  const rows = (dash.data('h2h').data || []).filter((r) => r.manager === me).sort((a, b) => b.games - a.games || b.w - a.w);
+  window.HOFfill(el, 'h2h', rows, [{ f: 'opponent' }, { f: 'games', n: 1 }, { f: 'w', n: 1 }, { f: 'l', n: 1 }, { f: 'pf', n: 1, fmt: F.pts }, { f: 'pa', n: 1, fmt: F.pts }, { f: 'po_w', n: 1 }, { f: 'po_l', n: 1 }]);
+});
+
+dash.draw('fr_stats', (el) => {
+  el.replaceChildren();
+  if (!ok('alltime')) return;
+  const r = dash.data('alltime').data.find((x) => x.manager === window.HOF.fr);
+  if (!r) return;
+  const w = 'manager=' + window.HOFenc(r.manager);
+  const stat = (label, field, text) => {
+    const d = document.createElement('div'); d.className = 'hof-tile';
+    const l = document.createElement('span'); l.className = 'hof-muted'; l.textContent = label;
+    d.append(l, window.HOFmark('b', 'alltime', field, w, text)); el.append(d);
+  };
+  stat('Titles', 'titles', String(r.titles));
+  stat('Seasons', 'seasons', String(r.seasons));
+  stat('Win %', 'pct', F.one(r.pct));
+  stat('Playoff trips', 'playoffs', String(r.playoffs));
+  stat('Best finish', 'best_finish', r.best_finish == null ? '' : String(r.best_finish));
+  stat('Points for', 'pf', F.pts(r.pf));
+});
+
+dash.draw('fr_chart', (el) => {
+  const ts = dash.data('team_seasons');
+  el.classList.toggle('dash-skeleton', ts.status === 'loading');
+  el.replaceChildren();
+  if (ts.status === 'error') { el.textContent = 'This chart didn’t load.'; return; }
+  if (!ok('team_seasons')) return;
+  const all = ts.data.filter((t) => t.complete);
+  const seasons = [...new Set(all.map((t) => t.season))].sort();
+  const rows = all.filter((t) => t.manager === window.HOF.fr).sort((a, b) => a.season - b.season);
+  const nTeams = d3.max(all, (t) => t.finish) || 10;
+  const W = el.clientWidth || 600, H = 220, m = { t: 14, r: 16, b: 26, l: 40 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    .attr('aria-label', `Line chart of ${window.HOF.fr}'s final finish in each season`);
+  const x = d3.scalePoint().domain(seasons).range([m.l, W - m.r]).padding(0.3);
+  const y = d3.scaleLinear().domain([1, nTeams]).range([m.t, H - m.b]);
+  svg.append('g').attr('class', 'grid').selectAll('line').data([1, 3, 6, nTeams]).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', (d) => y(d)).attr('y2', (d) => y(d));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickFormat(String));
+  svg.append('g').attr('class', 'axis').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues([1, 3, 6, nTeams]).tickFormat(F.place));
+  svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', (y(6) + y(7)) / 2).attr('y2', (y(6) + y(7)) / 2).style('stroke', 'var(--cds-chart-reference)').style('stroke-dasharray', '3 3');
+  svg.append('text').attr('x', W - m.r).attr('y', (y(6) + y(7)) / 2 - 4).attr('text-anchor', 'end').text('playoff line');
+  if (!rows.length) return;
+  svg.append('path').datum(rows).attr('d', d3.line().x((r) => x(r.season)).y((r) => y(r.finish))).style('fill', 'none').style('stroke', 'var(--um-ink)').style('stroke-width', 2.5);
+  const tip = document.createElement('div'); tip.className = 'hof-tip'; tip.hidden = true; el.append(tip);
+  svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (r) => x(r.season)).attr('cy', (r) => y(r.finish)).attr('r', 5)
+    .attr('r', (r) => (r.finish === 1 ? 7 : 5)).style('fill', (r) => (r.finish === 1 ? 'var(--um-maize)' : 'var(--um-ink)')).style('stroke', (r) => (r.finish === 1 ? 'var(--um-blue)' : 'var(--color-bg)')).style('stroke-width', 2)
+    .on('pointermove', (ev, r) => {
+      tip.hidden = false; tip.textContent = `${r.season}: ${F.place(r.finish)}, ${r.w}-${r.l}, ${F.pts(r.pf)} points`;
+      const [px, py] = d3.pointer(ev, el);
+      tip.style.left = Math.min(px + 12, W - tip.offsetWidth - 4) + 'px'; tip.style.top = (py + 12) + 'px';
+    })
+    .on('pointerleave', () => { tip.hidden = true; });
+  svg.append('g').selectAll('text').data(rows).join('text').attr('x', (r) => x(r.season)).attr('y', (r) => y(r.finish) - 10).attr('text-anchor', 'middle').text((r) => F.place(r.finish));
+});
+
+dash.draw('fr_body', (el) => {
+  const rows = (dash.data('team_seasons').data || []).filter((t) => t.manager === window.HOF.fr).sort((a, b) => b.season - a.season);
+  window.HOFfill(el, 'team_seasons', rows, [{ f: 'season' }, { f: 'team' }, { f: 'w', n: 1 }, { f: 'l', n: 1 }, { f: 'pf', n: 1, fmt: F.pts }, { f: 'pa', n: 1, fmt: F.pts }, { f: 'rank', n: 1 }, { f: 'finish', n: 1, fmt: (v, r) => (r.complete ? F.int(v) : 'In progress') }]);
+});
+dash.draw('fr_keepers', (el) => {
+  const rows = (dash.data('keepers').data || []).filter((k) => k.manager === window.HOF.fr);
+  window.HOFfill(el, 'keepers', rows, [{ f: 'player' }, { f: 'pos' }, { f: 'times_kept', n: 1 }, { f: 'seasons' }, { f: 'rounds' }, { f: 'pts', n: 1, fmt: F.pts }]);
+});
+
+dash.draw('season_pick', (sel) => {
+  const ts = dash.data('team_seasons');
+  const seasons = ok('team_seasons') ? [...new Set(ts.data.map((t) => t.season))].sort((a, b) => b - a) : [];
+  if (!window.HOF.season && seasons.length) window.HOF.season = seasons[0];
+  sel.replaceChildren(...seasons.map((s) => new Option(String(s), String(s))));
+  sel.value = String(window.HOF.season || '');
+  sel.onchange = () => { window.HOF.season = Number(sel.value); dash.draw('season_body'); dash.draw('season_note'); };
+});
+dash.draw('season_note', (el) => {
+  const ts = dash.data('team_seasons');
+  if (!ok('team_seasons')) { el.textContent = '—'; return; }
+  const rows = ts.data.filter((t) => t.season === window.HOF.season);
+  if (!rows.length) { el.textContent = '—'; return; }
+  const games = rows[0].w + rows[0].l + rows[0].t;
+  el.textContent = rows[0].complete ? 'Final standings. Final finish comes from the playoffs.' : `In progress: standings after ${games} games.`;
+});
+dash.draw('season_body', (el) => {
+  const rows = (dash.data('team_seasons').data || []).filter((t) => t.season === window.HOF.season).sort((a, b) => a.rank - b.rank);
+  window.HOFfill(el, 'team_seasons', rows, [{ f: 'rank' }, { f: 'manager' }, { f: 'team' }, { f: 'w', n: 1 }, { f: 'l', n: 1 }, { f: 'pf', n: 1, fmt: F.pts }, { f: 'pa', n: 1, fmt: F.pts }, { f: 'max_pf', n: 1, fmt: F.pts }, { f: 'finish', n: 1, fmt: (v, r) => (r.complete ? F.int(v) : '') }]);
+});
+
+dash.draw('keepers_body', (el) => {
+  const rows = (dash.data('keepers').data || []).slice(0, 25);
+  window.HOFfill(el, 'keepers', rows, [{ f: 'player' }, { f: 'pos' }, { f: 'manager' }, { f: 'times_kept', n: 1 }, { f: 'seasons' }, { f: 'rounds' }, { f: 'pts', n: 1, fmt: F.pts }]);
+});
+const dvCols = [{ f: 'player' }, { f: 'pos' }, { f: 'manager' }, { f: 'season', n: 1 }, { f: 'round', n: 1 }, { f: 'pick', n: 1 }, { f: 'pts', n: 1, fmt: F.pts }];
+dash.draw('steals_body', (el) => window.HOFfill(el, 'draft_value', (dash.data('draft_value').data || []).filter((r) => r.list === 'steal'), dvCols));
+dash.draw('busts_body', (el) => window.HOFfill(el, 'draft_value', (dash.data('draft_value').data || []).filter((r) => r.list === 'bust'), dvCols));
+
+dash.draw('trades_body', (el) => {
+  const rows = (dash.data('trades').data || []).slice().sort((a, b) => b.season - a.season || b.week - a.week);
+  window.HOFfill(el, 'trades', rows, [{ f: 'season' }, { f: 'week' }, { f: 'side_a' }, { f: 'a_got', wrap: 1 }, { f: 'a_pts', n: 1, fmt: F.pts }, { f: 'side_b' }, { f: 'b_got', wrap: 1 }, { f: 'b_pts', n: 1, fmt: F.pts }]);
+});
+dash.draw('pickups_body', (el) => {
+  window.HOFfill(el, 'pickups', dash.data('pickups').data || [], [{ f: 'player' }, { f: 'pos' }, { f: 'manager' }, { f: 'how' }, { f: 'season', n: 1 }, { f: 'week', n: 1 }, { f: 'pts', n: 1, fmt: F.pts }]);
+});
+dash.draw('regret_body', (el) => {
+  window.HOFfill(el, 'drop_regret', dash.data('drop_regret').data || [], [{ f: 'player' }, { f: 'pos' }, { f: 'dropped_by' }, { f: 'season', n: 1 }, { f: 'week', n: 1 }, { f: 'pts_for_others', n: 1, fmt: F.pts }, { f: 'mostly_for' }]);
+});
+
+dash.draw('kn_pick', (sel) => {
+  const k = dash.data('keeper_options');
+  const names = ok('keeper_options') ? [...new Set(k.data.map((r) => r.manager))].sort((a, b) => a.localeCompare(b)) : [];
+  if (!window.HOF.kn && names.length) window.HOF.kn = names.includes('Billy') ? 'Billy' : names[0];
+  sel.replaceChildren(...names.map((n) => new Option(n, n)));
+  sel.value = window.HOF.kn || '';
+  sel.onchange = () => { window.HOF.kn = sel.value; dash.draw('kn_body'); };
+});
+dash.draw('kn_body', (el) => {
+  const rows = (dash.data('keeper_options').data || []).filter((r) => r.manager === window.HOF.kn);
+  window.HOFfill(el, 'keeper_options', rows, [{ f: 'player' }, { f: 'pos' }, { f: 'nfl_team' }, { f: 'status' }, { f: 'cost_round', n: 1 }, { f: 'cost_basis' }, { f: 'pts', n: 1, fmt: F.pts }],
+    (tr, r) => { if (!r.eligible) tr.className = 'out'; });
+});
+dash.draw('kn_maxed', (el) => {
+  const rows = (dash.data('keeper_options').data || []).filter((r) => !r.eligible).sort((a, b) => b.pts - a.pts);
+  window.HOFfill(el, 'keeper_options', rows, [{ f: 'player' }, { f: 'pos' }, { f: 'manager' }, { f: 'status' }, { f: 'pts', n: 1, fmt: F.pts }]);
+});
+
+dash.draw('kgrid', (el) => {
+  const p = dash.data('picks');
+  el.classList.toggle('dash-skeleton', p.status === 'loading');
+  el.replaceChildren();
+  if (p.status === 'error') { el.textContent = 'The keeper grid didn\u2019t load.'; return; }
+  if (!ok('picks')) return;
+  const ks = p.data.filter((r) => r.keeper);
+  const seasons = [...new Set(p.data.map((r) => r.season))].sort();
+  const managers = [...new Set(ks.map((r) => r.manager))].sort((a, b) => a.localeCompare(b));
+  const t = document.createElement('table'); t.className = 'hof-table hof-kgrid';
+  const hr = document.createElement('tr'); const h0 = document.createElement('th'); h0.textContent = 'Manager'; hr.append(h0);
+  for (const s of seasons) { const th = document.createElement('th'); th.textContent = String(s); hr.append(th); }
+  const thead = document.createElement('thead'); thead.append(hr); t.append(thead);
+  const tb = document.createElement('tbody');
+  for (const m of managers) {
+    const tr = document.createElement('tr'); const th = document.createElement('th'); th.textContent = m; tr.append(th);
+    for (const s of seasons) {
+      const td = document.createElement('td');
+      const list = ks.filter((r) => r.manager === m && r.season === s).sort((a, b) => a.round - b.round);
+      list.forEach((r, i) => { if (i) td.append(document.createElement('br')); td.append(`${r.player} (${r.round})`); });
+      tr.append(td);
+    }
+    tb.append(tr);
+  }
+  t.append(tb); el.append(t);
+});
+</script>
+
+<p class="site-foot">Data from the league's Sleeper history, updated every Tuesday during the season.</p>
+</div>
+</body>
+</html>

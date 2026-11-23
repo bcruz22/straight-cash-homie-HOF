@@ -1,0 +1,195 @@
+{
+ "display": {
+  "593654007445118976": "Billy",
+  "608420615896010752": "Josh",
+  "608378868721582080": "Coop",
+  "608436448810602496": "Eric",
+  "608377811132047360": "Donny",
+  "608378725096030208": "Fruit",
+  "855277198444179456": "Matt",
+  "608464135600046080": "Timmy",
+  "608395093388386304": "Dylan",
+  "855258987124355072": "Hamill",
+  "608391943596093440": "Denny",
+  "608460692193898496": "Richie"
+ },
+ "keepers_2020": [
+  {
+   "owner": "593654007445118976",
+   "round": 3,
+   "last": "Kittle",
+   "raw": "G. Kittle-3",
+   "first": "G"
+  },
+  {
+   "owner": "593654007445118976",
+   "round": 13,
+   "last": "Jackson",
+   "raw": "L. Jackson-13",
+   "first": "L"
+  },
+  {
+   "owner": "608420615896010752",
+   "round": 1,
+   "last": "Elliott",
+   "raw": "Z. Elliott-1",
+   "first": "Z"
+  },
+  {
+   "owner": "608420615896010752",
+   "round": 4,
+   "last": "Jones",
+   "raw": "A. Jones-4",
+   "first": "A"
+  },
+  {
+   "owner": "608378868721582080",
+   "round": 1,
+   "last": "Barkley",
+   "raw": "S. Barkley-1",
+   "first": "S"
+  },
+  {
+   "owner": "608378868721582080",
+   "round": 9,
+   "last": "Murray",
+   "raw": "K. Murray-9",
+   "first": "K"
+  },
+  {
+   "owner": "608436448810602496",
+   "round": 1,
+   "last": "Thomas",
+   "raw": "M. Thomas-1",
+   "first": "M"
+  },
+  {
+   "owner": "608436448810602496",
+   "round": 2,
+   "last": "Chubb",
+   "raw": "Chubb-2",
+   "first": ""
+  },
+  {
+   "owner": "608377811132047360",
+   "round": 1,
+   "last": "McCaffrey",
+   "raw": "C. McCaffrey-1",
+   "first": "C"
+  },
+  {
+   "owner": "608377811132047360",
+   "round": 2,
+   "last": "Cook",
+   "raw": "D. Cook-2",
+   "first": "D"
+  },
+  {
+   "owner": "608378725096030208",
+   "round": 2,
+   "last": "Hill",
+   "raw": "T. Hill-2",
+   "first": "T"
+  },
+  {
+   "owner": "608378725096030208",
+   "round": 3,
+   "last": "Jacobs",
+   "raw": "J. Jacobs-3",
+   "first": "J"
+  },
+  {
+   "owner": "608391943596093440",
+   "round": 1,
+   "last": "Adams",
+   "raw": "D. Adams-1",
+   "first": "D"
+  },
+  {
+   "owner": "608391943596093440",
+   "round": 7,
+   "last": "Sanders",
+   "raw": "M. Sanders-7",
+   "first": "M"
+  },
+  {
+   "owner": "608464135600046080",
+   "round": 3,
+   "last": "Cooper",
+   "raw": "A. Cooper-3",
+   "first": "A"
+  },
+  {
+   "owner": "608395093388386304",
+   "round": 1,
+   "last": "Kamara",
+   "raw": "A. Kamara-1",
+   "first": "A"
+  },
+  {
+   "owner": "608395093388386304",
+   "round": 2,
+   "last": "Kelce",
+   "raw": "T. Kelce-2",
+   "first": "T"
+  },
+  {
+   "owner": "608460692193898496",
+   "round": 2,
+   "last": "Mahomes",
+   "raw": "P. Mahomes-2",
+   "first": "P"
+  },
+  {
+   "owner": "608460692193898496",
+   "round": 3,
+   "last": "Henry",
+   "raw": "D. Henry-3",
+   "first": "D"
+  }
+ ],
+ "not_keepers": [
+  {
+   "season": "2024",
+   "owner": "593654007445118976",
+   "last": "Samuel Sr.",
+   "why": "Commissioner: only 1 keeper carried over in 2024"
+  },
+  {
+   "season": "2024",
+   "owner": "608378868721582080",
+   "last": "McCaffrey",
+   "why": "Commissioner: only 1 keeper carried over in 2024"
+  },
+  {
+   "season": "2024",
+   "owner": "608436448810602496",
+   "last": "Robinson",
+   "why": "Commissioner: only 1 keeper carried over in 2024"
+  },
+  {
+   "season": "2024",
+   "owner": "608378725096030208",
+   "last": "Mostert",
+   "why": "Commissioner: only 1 keeper carried over in 2024"
+  },
+  {
+   "season": "2024",
+   "owner": "855277198444179456",
+   "last": "Olave",
+   "why": "Commissioner: only 1 keeper carried over in 2024"
+  },
+  {
+   "season": "2021",
+   "owner": "608377811132047360",
+   "last": "McCaffrey",
+   "why": "Back to draft (BTD) after 2 keeper years, redrafted"
+  },
+  {
+   "season": "2023",
+   "owner": "608436448810602496",
+   "last": "Taylor",
+   "why": "Back to draft after 2 keeper years, redrafted"
+  }
+ ]
+}
